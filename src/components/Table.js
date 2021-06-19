@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getNewsThunk, setNews } from '../redux/reducer'
 import { TableItem } from './TableItem'
+import { Loader } from './Loader'
 
 import style from "./style.module.css"
 
@@ -9,21 +10,22 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 
 	const [data, setData] = useState(newsData)
 	console.log("data: ", data)
-	const [fetching, setFetching] = useState(true)
+	const [isFetching, setIsFetching] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		setData(newsData)
 	}, [newsData])
 
 	useEffect(() => {
-		if (fetching) {
+		if (isFetching) {
 
 			getNewsThunk(page)
 
 		}
 		console.log(page)
-		setFetching(false)
-	}, [fetching])
+		setIsFetching(false)
+	}, [isFetching])
 
 
 
@@ -45,7 +47,7 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 
 		if (result < 100 && newsData.length < totalCount) {
 			console.log("scroll")
-			setFetching(true)
+			setIsFetching(true)
 		}
 	}
 
@@ -64,6 +66,8 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 
 	return (
 		<>
+			{isLoading && <Loader />}
+
 			<table className={style.tableMain}>
 				<thead>
 					<tr className={style.headTable}>
@@ -76,6 +80,7 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 					<TableItem news={data} />
 				</tbody>
 			</table>
+
 		</>
 	)
 }
