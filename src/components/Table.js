@@ -18,16 +18,14 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 	}, [newsData])
 
 	useEffect(() => {
+		setIsLoading(true)
+		console.log(isLoading)
 		if (isFetching) {
-
 			getNewsThunk(page)
-
 		}
-		console.log(page)
 		setIsFetching(false)
+		setIsLoading(false)
 	}, [isFetching])
-
-
 
 
 	useEffect(() => {
@@ -43,11 +41,9 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 		const current = window.innerHeight
 		const result = (height - (vision + current))
 
-		console.log("newsData.length: ", newsData.length)
-
 		if (result < 100 && newsData.length < totalCount) {
-			console.log("scroll")
 			setIsFetching(true)
+			setIsLoading(true)
 		}
 	}
 
@@ -66,20 +62,21 @@ const Table = ({ getNewsThunk, newsData, totalCount, page }) => {
 
 	return (
 		<>
-			{isLoading && <Loader />}
-
-			<table className={style.tableMain}>
-				<thead>
-					<tr className={style.headTable}>
-						<th onClick={() => sortData("time")}>Time added</th>
-						<th onClick={() => sortData("title")}>Title</th>
-						<th onClick={() => sortData("domain")}>Domain</th>
-					</tr>
-				</thead>
-				<tbody>
-					<TableItem news={data} />
-				</tbody>
-			</table>
+			{isLoading
+				? <Loader />
+				: <table className={style.tableMain} scroll="no">
+					<thead>
+						<tr className={style.headTable}>
+							<th onClick={() => sortData("time")}>Time added</th>
+							<th onClick={() => sortData("title")}>Title</th>
+							<th onClick={() => sortData("domain")}>Domain</th>
+						</tr>
+					</thead>
+					<tbody>
+						<TableItem news={data} />
+					</tbody>
+				</table>
+			}
 
 		</>
 	)

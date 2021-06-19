@@ -15,16 +15,16 @@
     height: 100vh;
     opacity: 90%;
     z-index: 10;
-    border: 1px solid #000;
-    background-color: rgba(51, 49, 49, 0.85);
+    background-color: rgba(255, 255, 255, 0.96);
 }
 .loader img{
     position: relative;
+    top: 30%;
     opacity: 100%;
 }
 
 .tableMain {
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     margin-left: 20px;
     margin: 0 auto;
     width: 70%;
@@ -36,18 +36,19 @@
     letter-spacing: 1px;
 }
 .timeAgo{
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
     opacity: 80%;
 }
 
 .RowLeft, .RowRight{
+    font-size: 14px;
     padding: 0 10px;
     width: 25%;
-    height: 60px;
+    height: 56px;
     text-align: center;
     color: rgb(77, 92, 89, 0.9);
-    border-bottom: 1px solid rgb(77, 92, 89, 0.1);
+    border-bottom: 1px solid rgb(77, 92, 89, 0.05);
 } 
 .RowRight a {
     text-decoration: none;
@@ -57,10 +58,10 @@
 .RowCentral{
     padding: 5px 10px 5px;
     width: 93%;
-    height: 60px;
+    height: 56px;
     text-align: left;
-    border-bottom: 1px solid rgb(77, 92, 89,0.1);
-
+    border-bottom: 1px solid rgb(77, 92, 89,0.05);
+    font-size: 16px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
